@@ -96,9 +96,7 @@ class Entry():
             for i,v in s_entry.items():
                 # print(i,v)
                 if self.entry[i] != v and v != None and self.entry[i] != None:
-                    print(4)
                     self.error([i,v])
-                    print(5)
                     break
         else:
             self.create_entry(self.entry['loc'], self.entry['date'])
