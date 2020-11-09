@@ -90,7 +90,9 @@ class Entry():
 
     def pre_overwriting(self):
         if self.check_if_entry_exists(self.entry['loc'], self.entry['date']):
+            print("DEBUG: Entry already exists")
             s_entry = self.get_stored_entry(self.entry['loc'], self.entry['date'])
+            print("DEBUG: got stored entry")
             for i,v in s_entry.items():
                 print(i,v)
                 if self.entry[i] != v and v != None and self.entry[i] != None:
@@ -98,6 +100,7 @@ class Entry():
                     break
         else:
             self.create_entry(self.entry['loc'], self.entry['date'])
+            print("DEBUG: Create entry")
 
 
     def error(self, values):
@@ -106,5 +109,7 @@ class Entry():
     def store(self):
         self.pre_overwriting()
         for m, v in self.entry.items():
+            print("DEBUG: trying to enter next value")
             if v != None and m != 'loc' and m != 'date':
                 self.edit_entry(self.entry['date'], self.entry['loc'], m, v)
+                print("DEBUG: edited entry with values: %s" % (m, v))
