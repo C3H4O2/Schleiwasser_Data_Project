@@ -1,7 +1,10 @@
 from entry import Entry
 import os
 
-os.remove('data.db')
+try:
+    os.remove('data.db')
+except:
+    pass
 
 entry = Entry()
 entry.setup_db()
