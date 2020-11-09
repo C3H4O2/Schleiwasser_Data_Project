@@ -62,10 +62,8 @@ class Entry():
             c = conn.cursor()
             c.execute(f"SELECT * FROM {loc} WHERE date=?", (date,))
             if c.fetchone() == None:
-                print('False')
                 return False
             else:
-                print('True')
                 return True
 
     def edit_entry(self, date, loc, value_name, value):
