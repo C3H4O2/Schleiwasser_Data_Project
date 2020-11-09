@@ -61,10 +61,11 @@ class Entry():
         with sqlite3.connect('data.db') as conn:
             c = conn.cursor()
             c.execute(f"SELECT * FROM {loc} WHERE date=?", (date,))
-            print(c.fetchone(), '?')
             if c.fetchone() == None:
+                print('False')
                 return False
             else:
+                print('True')
                 return True
 
     def edit_entry(self, date, loc, value_name, value):
@@ -86,6 +87,7 @@ class Entry():
         with sqlite3.connect('data.db') as conn:
             c = conn.cursor()
             c.execute(f"INSERT INTO {loc} (date) VALUES (?)", (date,))
+            print('DEBUG: Entry created')
             conn.commit()
 
     def pre_overwriting(self):
