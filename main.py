@@ -10,7 +10,7 @@ entry = Entry()
 def index():
     cd = request.cookies.get('l') if request.cookies.get('l')!=None else ''
     try:
-        entry.get()
+        entry.get(request)
 
         if request.args.get('send')=='send':
             entry.store()
