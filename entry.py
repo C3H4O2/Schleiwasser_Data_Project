@@ -40,6 +40,11 @@ class Entry():
         gpsy = request.args.get('gpsy').replace(',','.')
         gpsy = float(gpsy) if len(gpsy)>0 and gpsy!='-' else None
         l = [da, uz, ort, temp, nitrat, nwl, nitrit, niwl, ammo, awl, phos, pwl, ph, gpsx, gpsy]
+
+        f = open('log.txt', 'a')
+        f.write(';'.join([str(i) for i in l])+'\t'+name+'\n')
+        f.close()
+
         self.entry = dict()
         self.entry['loc'] = ort
         self.entry['date'] = da
@@ -107,3 +112,9 @@ class Entry():
         for m, v in self.entry.items():
             if v != None and m != 'loc' and m != 'date':
                 self.edit_entry(self.entry['date'], self.entry['loc'], m, v)
+
+    def get_table(self, table_name):
+        with sqlite3.connect('data.db') as conn:
+            c = conn.cursor()
+            c.execute(f"SELECT * FROM GB1")
+            print(c.fetchall())
