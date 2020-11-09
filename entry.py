@@ -71,11 +71,7 @@ class Entry():
         with sqlite3.connect('data.db') as conn:
             c = conn.cursor()
             # print(loc)
-            c.execute(f"""
-            UPDATE {loc}
-            SET {value_name}=?
-            WHERE date=?""", (value, date))
-
+            c.execute(f"UPDATE {loc} SET {value_name}=? WHERE date=?", (value, date))
             conn.commit()
 
     def get_stored_entry(self, loc, date):
@@ -115,5 +111,6 @@ class Entry():
     def store(self):
         self.pre_overwriting()
         for m, v in self.entry.items():
-            if v != None and m != 'loc':
+            if v != None and m != 'loc' and m != 'date':
                 self.edit_entry(self.entry['date'], self.entry['loc'], m, v)
+                print("beep boop" + str(v))
