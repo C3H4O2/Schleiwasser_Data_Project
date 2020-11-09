@@ -45,17 +45,17 @@ class Entry():
         self.entry['date'] = da
         self.entry['time'] = uz
         self.entry['temp'] = temp
-        self.entry['nitrat'] = nitrat
-        self.entry['nawl'] = nwl
-        self.entry['nitrit'] = nitrit
-        self.entry['niwl'] = niwl
-        self.entry['ammonium'] = ammo
-        self.entry['awl'] = awl
-        self.entry['pho'] = phos
-        self.entry['phowl'] = pwl
-        self.entry['ph'] = ph
-        self.entry['gpsl'] = gpsx
-        self.entry['gpsb'] = gpsy
+        self.entry['nitratAQ'] = nitrat
+        self.entry['nitratWIN'] = nwl
+        self.entry['nitritAQ'] = nitrit
+        self.entry['nitritWIN'] = niwl
+        self.entry['ammoniumAQ'] = ammo
+        self.entry['ammoniumWIN'] = awl
+        self.entry['phosphatAQ'] = phos
+        self.entry['phosphatWIN'] = pwl
+        self.entry['phWert'] = ph
+        self.entry['gpsLaenge'] = gpsx
+        self.entry['gpsBreite'] = gpsy
 
     def check_if_entry_exists(self, loc, date):
         with sqlite3.connect('data.db') as conn:
@@ -104,7 +104,7 @@ class Entry():
 
 
     def error(self, values):
-        print('Overwriting prevented: %s' % values)
+        print('Overwriting prevented:', values)
 
     def store(self):
         print("DEBUG: Entry is : ", self.entry)
@@ -113,4 +113,4 @@ class Entry():
             print("DEBUG: trying to enter next value")
             if v != None and m != 'loc' and m != 'date':
                 self.edit_entry(self.entry['date'], self.entry['loc'], m, v)
-                print("DEBUG: edited entry with values: %s" % (m, v))
+                print("DEBUG: edited entry with values:", (m, v))
