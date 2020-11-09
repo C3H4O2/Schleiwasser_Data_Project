@@ -12,6 +12,7 @@ class Entry():
         # global d
         name = request.args.get('name')
         da = request.args.get('date').replace(',', '.')+'.2020'
+        da = '0'+da if len(da)<10 else da
         uz = request.args.get('uz').replace(',','.')
         uz = uz if not uz == '' else None
         ort = request.args.get('G').replace(',', '.')
