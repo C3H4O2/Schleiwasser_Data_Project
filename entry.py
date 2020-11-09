@@ -92,21 +92,30 @@ class Entry():
             conn.commit()
 
     def pre_overwriting(self):
+        print(21)
         if self.check_if_entry_exists(self.entry['loc'], self.entry['date']):
+            print(22)
             s_entry = self.get_stored_entry(self.entry['loc'], self.entry['date'])
+            print(23)
             for i,v in s_entry.items():
+                print(i,v)
                 if self.entry[i] != v and v != None and self.entry[i] != None:
+                    print(24)
                     self.error([i,v])
+                    print(25)
                     break
         else:
             self.create_entry(self.entry['loc'], self.entry['date'])
+            print(33)
 
 
     def error(self, values):
         print('Overwriting prevented: %s' % values)
 
     def store(self):
+        print(11)
         pre_overwriting()
+        print(12)
         for m, v in self.entry.items():
             if v != None and m != 'loc':
                 self.edit_entry(self.entry['date'], self.entry['loc'], m, v)
