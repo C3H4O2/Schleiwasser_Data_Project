@@ -2,9 +2,9 @@ import sqlite3
 
 class Entry():
     def setup_db(self):
-        locations = ['GB1', 'GB2', 'GB3', 'GB4', 'GB5']
+        self.locations = ['GB1', 'GB2', 'GB3', 'GB4', 'GB5']
         with sqlite3.connect('data.db') as conn:
-            for i in locations:
+            for i in self.locations:
                 conn.execute(f'''CREATE TABLE IF NOT EXISTS {i}
                             (date DATE, time TIME, temp INTEGER, nitratAQ INTEGER, nitratWIN NUMERIC(10, 5), nitritAQ NUMERIC(10, 5), nitritWIN NUMERIC(10, 5), ammoniumAQ NUMERIC(10,5), ammoniumWIN NUMERIC(10,5), phosphatAQ NUMERIC(10,5), phosphatWIN NUMERIC(10,5), phWert NUMERIC(3,1), gpsLaenge NUMERIC(20,10), gpsBreite NUMERIC(20,10))''')
 
@@ -118,3 +118,9 @@ class Entry():
             c = conn.cursor()
             c.execute(f"SELECT * FROM {table_name}")
             return c.fetchall()
+
+    def get_all_tables(self):
+        tables = []
+        for i in self.locations:
+            tables.append(self.get_table(i))
+        return tables
