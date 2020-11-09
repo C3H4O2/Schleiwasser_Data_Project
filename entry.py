@@ -8,8 +8,8 @@ class Entry():
                 conn.execute(f'''CREATE TABLE IF NOT EXISTS {i}
                             (date DATE, time TIME, temp INTEGER, nitratAQ INTEGER, nitratWIN NUMERIC(10, 5), nitritAQ NUMERIC(10, 5), nitritWIN NUMERIC(10, 5), ammoniumAQ NUMERIC(10,5), ammoniumWIN NUMERIC(10,5), phosphatAQ NUMERIC(10,5), phosphatWIN NUMERIC(10,5), phWert NUMERIC(3,1), gpsLaenge NUMERIC(20,10), gpsBreite NUMERIC(20,10))''')
 
-    def get(self):
-        global d
+    def get(self, request):
+        # global d
         name = request.args.get('name')
         da = request.args.get('date').replace(',', '.')+'.2020'
         uz = request.args.get('uz').replace(',','.')
