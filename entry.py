@@ -61,6 +61,7 @@ class Entry():
         with sqlite3.connect('data.db') as conn:
             c = conn.cursor()
             c.execute(f"SELECT * FROM {loc} WHERE date=?", (date,))
+            print(c.fetchone(), '?')
             if c.fetchone() == None:
                 return False
             else:
@@ -92,30 +93,27 @@ class Entry():
             conn.commit()
 
     def pre_overwriting(self):
-        print(21)
         if self.check_if_entry_exists(self.entry['loc'], self.entry['date']):
-            print(22)
+            print(21)
             s_entry = self.get_stored_entry(self.entry['loc'], self.entry['date'])
-            print(23)
+            print(3)
             for i,v in s_entry.items():
                 print(i,v)
                 if self.entry[i] != v and v != None and self.entry[i] != None:
-                    print(24)
+                    print(4)
                     self.error([i,v])
-                    print(25)
+                    print(5)
                     break
         else:
             self.create_entry(self.entry['loc'], self.entry['date'])
-            print(33)
+            print(22)
 
 
     def error(self, values):
         print('Overwriting prevented: %s' % values)
 
     def store(self):
-        print(11)
-        pre_overwriting()
-        print(12)
+        self.pre_overwriting()
         for m, v in self.entry.items():
             if v != None and m != 'loc':
                 self.edit_entry(self.entry['date'], self.entry['loc'], m, v)
