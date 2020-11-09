@@ -106,7 +106,7 @@ class Entry():
         print('Overwriting prevented: %s' % values)
 
     def store(self):
-        pre_overwriting()
+        self.pre_overwriting()
         for m, v in self.entry.items():
             if v != None and m != 'loc':
                 self.edit_entry(self.entry['date'], self.entry['loc'], m, v)
