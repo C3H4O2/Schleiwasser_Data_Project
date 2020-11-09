@@ -96,24 +96,16 @@ class Entry():
             s_entry = self.get_stored_entry(self.entry['loc'], self.entry['date'])
             for i,v in s_entry.items():
                 if self.entry[i] != v and v != None and self.entry[i] != None:
-                    return False, [i, v]
+                    self.error([i,v])
         else:
             self.create_entry(self.entry['loc'], self.entry['date'])
-            return True,
-        return True,
+
 
     def error(self, values):
         print('Overwriting prevented: %s' % values)
 
     def store(self):
-        overwriting_prevented = self.pre_overwriting()
-        if overwriting_prevented[0]:
-            for m, v in entry.items():
-                # print(m, v)
-                if v != None and m != 'loc':
-                    self.edit_entry(self.entry['date'], self.entry['loc'], m, v)
-                # else:
-                #     continue1
-
-        else:
-            self.error([overwriting_prevented[1], entry[overwriting_prevented[1][0]]])
+        pre_overwriting()
+        for m, v in self.entry.items():
+            if v != None and m != 'loc':
+                self.edit_entry(self.entry['date'], self.entry['loc'], m, v)
