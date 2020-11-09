@@ -66,53 +66,52 @@ class Entry():
             else:
                 return True
 
-    def edit_entry(self, entry, loc, value_name, value):
+    def edit_entry(self, date, loc, value_name, value):
         with sqlite3.connect('data.db') as conn:
             c = conn.cursor()
             # print(loc)
             c.execute(f"""
             UPDATE {loc}
             SET {value_name}=?
-            WHERE date=?""", (value, entry['date']))
+            WHERE date=?""", (value, date))
 
             conn.commit()
 
-    def get_stored_entry(self, entry):
+    def get_stored_entry(self, loc, date):
         with sqlite3.connect('data.db') as conn:
             c = conn.cursor()
-            c.execute(f"SELECT * FROM {entry['loc']} WHERE date=?", (entry['date'],))
+            c.execute(f"SELECT * FROM {loc} WHERE date=?", (date,))
             row = c.fetchone()
             stored_entry = {'date': row[0], 'time': row[1], 'temp': row[2], 'nitratAQ': row[3], 'nitratWIN': row[4], 'nitritAQ': row[5], 'nitritWIN': row[6], 'ammoniumAQ': row[7], 'ammoniumWIN': row[8], 'phosphatAQ': row[9], 'phosphatWIN': row[10], 'phWert': row[11], 'gpsLaenge': row[12], 'gpsBreite': row[13]}
             return stored_entry
 
-    def create_entry(self, entry):
+    def create_entry(self, loc, date):
         with sqlite3.connect('data.db') as conn:
             c = conn.cursor()
-            c.execute(f"INSERT INTO {entry['loc']} (date) VALUES (?)", (entry['date'],))
+            c.execute(f"INSERT INTO {loc} (date) VALUES (?)", (date,))
             conn.commit()
 
-    def pre_overwriting(self, entry):
-        if self.check_if_entry_exists(entry['loc'], entry['date']):
-            s_entry = self.get_stored_entry(entry)
+    def pre_overwriting(self):
+        if self.check_if_entry_exists(self.entry['loc'], self.entry['date']):
+            s_entry = self.get_stored_entry(self.entry['loc'], self.entry['date'])
             for i,v in s_entry.items():
-                # print(i,v)
-                if entry[i] != v and v != None and entry[i] != None:
+                if self.entry[i] != v and v != None and self.entry[i] != None:
                     return False, [i, v]
         else:
-            self.create_entry(entry)
+            self.create_entry(self.entry['loc'], self.entry['date'])
             return True,
         return True,
 
     def error(self, values):
         print('Overwriting prevented: %s' % values)
 
-    def store(self, entry):
-        overwriting_prevented = self.pre_overwriting(entry)
+    def store(self):
+        overwriting_prevented = self.pre_overwriting()
         if overwriting_prevented[0]:
             for m, v in entry.items():
                 # print(m, v)
                 if v != None and m != 'loc':
-                    self.edit_entry(entry, entry['loc'], m, v)
+                    self.edit_entry(self.entry['date'], self.entry['loc'], m, v)
                 # else:
                 #     continue1
 
