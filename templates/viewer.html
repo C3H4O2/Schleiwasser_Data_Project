@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MINT-Modul</title>
+  <style>
+    body {color: white; font: 20px Roboto; background-image: url('static/img.jpg'); background-size : 100% auto}
+    input {color: white; background: rgba(255, 255, 255, 0.35); font: 50px Roboto; margin:auto}
+    select, option {color: black; background: rgba(255, 255, 255, 0.35); font: 50px Roboto; margin:auto}
+  </style>
+</head>
+<body>
+    <center>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    <form action='/tables'>
+      <!-- <input placeholder='Datum' type='text' name='date' style='text-align: center'> -->
+      <select name="date" class="selectpicker form-control">
+        {% for dat in d %}
+        <option value="{{ dat }}">{{ dat }}</option>
+        {% endfor %}
+      </select>
+      <input type='submit' name='view' value='Angucken' style='text-align: center'>
+    </form>
+    </center>
+    <a id='lb' href='https://www.freepik.com/vectors/background'><p style='color: white;font: 20px Roboto; position: absolute; left: 5px; bottom:0px'>Background vector created by pikisuperstar - www.freepik.com</p></a>
+</body>
+</html>

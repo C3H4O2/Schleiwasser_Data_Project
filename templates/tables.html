@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tables</title>
+  <style>
+    body {color: white; font: 20px Roboto; background-image: url('static/img.jpg'); background-size : 100% auto}
+    h1 {margin: auto; color: white;}
+    table {margin: auto;}
+    table, th, td {
+      border: 1px solid white;
+    }
+    input {color: white; background: rgba(255, 255, 255, 0.35); font: 20px Roboto; margin:auto}
+    img { font: 20px Roboto; position: absolute; right: 5px; bottom:5px}
+    select {color: white;background: rgba(255, 255, 255, 0.35); font: 20px Roboto;}
+    option {color: black;background: rgba(255, 255, 255, 0.35); font: 20px Roboto;}
+    td {margin: 10px; text-align: center}
+  </style>
+</head>
+<body>
+  <center><h1>{{content[0][0]}}</h1></center>
+  <br>
+    <table style='width: 75%'>
+      <tr>
+        <th>Ort</th>
+        <th>Temperatur</th>
+        <th>Nitrat</th>
+        <th>Nitrat WL</th>
+        <th>Nitrit</th>
+        <th>Ammonium</th>
+        <th>Ammonium WL</th>
+        <th>Phosphat</th>
+        <th>Phosphat WL</th>
+        <th>pH-Wert</th>
+      </tr>
+      <tr>
+        <td>{{content[0][1]}}</td>
+        <td>{{content[0][2]}}</td>
+        <td>{{content[0][3]}}</td>
+        <td>{{content[0][4]}}</td>
+        <td>{{content[0][5]}}</td>
+        <td>{{content[0][6]}}</td>
+        <td>{{content[0][7]}}</td>
+        <td>{{content[0][8]}}</td>
+        <td>{{content[0][9]}}</td>
+        <td>{{content[0][10]}}</td>
+      </tr>
+      <tr>
+        <td>{{content[1][1]}}</td>
+        <td>{{content[1][2]}}</td>
+        <td>{{content[1][3]}}</td>
+        <td>{{content[1][4]}}</td>
+        <td>{{content[1][5]}}</td>
+        <td>{{content[1][6]}}</td>
+        <td>{{content[1][7]}}</td>
+        <td>{{content[1][8]}}</td>
+        <td>{{content[1][9]}}</td>
+        <td>{{content[1][10]}}</td>
+      </tr>
+      <tr>
+        <td>{{content[2][1]}}</td>
+        <td>{{content[2][2]}}</td>
+        <td>{{content[2][3]}}</td>
+        <td>{{content[2][4]}}</td>
+        <td>{{content[2][5]}}</td>
+        <td>{{content[2][6]}}</td>
+        <td>{{content[2][7]}}</td>
+        <td>{{content[2][8]}}</td>
+        <td>{{content[2][9]}}</td>
+        <td>{{content[2][10]}}</td>
+      </tr>
+        <td>{{content[3][1]}}</td>
+        <td>{{content[3][2]}}</td>
+        <td>{{content[3][3]}}</td>
+        <td>{{content[3][4]}}</td>
+        <td>{{content[3][5]}}</td>
+        <td>{{content[3][6]}}</td>
+        <td>{{content[3][7]}}</td>
+        <td>{{content[3][8]}}</td>
+        <td>{{content[3][9]}}</td>
+        <td>{{content[3][10]}}</td>
+      </tr>
+      <tr>
+        <td>{{content[4][1]}}</td>
+        <td>{{content[4][2]}}</td>
+        <td>{{content[4][3]}}</td>
+        <td>{{content[4][4]}}</td>
+        <td>{{content[4][5]}}</td>
+        <td>{{content[4][6]}}</td>
+        <td>{{content[4][7]}}</td>
+        <td>{{content[4][8]}}</td>
+        <td>{{content[4][9]}}</td>
+        <td>{{content[4][10]}}</td>
+      </tr>
+    </table>
+  <a id='lb' href='https://www.freepik.com/vectors/background'><p style='color: white;font: 20px Roboto; position: absolute; left: 5px; bottom:0px'>Background vector created by pikisuperstar - www.freepik.com</p></a>
+  <i class="fas fa-arrow-left"></i>
+</body>
+</html>

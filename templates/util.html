@@ -1,0 +1,36 @@
+{% macro form_input_general(label='', addon='') %}
+    <div class="form-group">
+        {%- if label or addon %}
+        <div class="input-group text-right">
+        {%- endif %}
+        {%- if label %}
+            <div class="input-group-prepend">
+                <div class="input-group-text">{{ label }}:</div>
+            </div>
+        {%- endif %}
+
+            {{ caller() }}
+
+        {%- if addon %}
+            <div class="input-group-append">
+                <span class="input-group-text">{{ addon }}</span>
+            </div>
+        {%- endif %}
+        {% if label or addon %}</div>{% endif %}
+    </div>
+{%- endmacro %}
+
+
+{% macro form_input_text(name, label='', defaultvalue='', anid='', type='text', placeholder='', addon='', attributes='') %}
+    {%- set anid = anid or "input-text-{}".format(name) %}
+    {%- call form_input_general(label, addon) -%}
+        <input{{ dict(
+            type="text",
+            name=name,
+            id=anid,
+            class="form-control text-right",
+            placeholder=placeholder,
+            value=defaultvalue
+        )|xmlattr }} {{ attributes }}/>
+    {%- endcall %}
+{%- endmacro %}

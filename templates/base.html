@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CSS -->
+        {#- TODO: host this on our own -#}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+              integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+        <title>{% block title %}MINT-Modul{% endblock %}</title>
+        <style>
+            .own-bg {
+                background-image: url("static/images.jpg");
+                background-size: 100% auto;
+                background-attachment: fixed;
+                min-height: 100vh;
+            }
+            .input-group-prepend > .input-group-text {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="own-bg text-white">
+            <div class="container-xl">
+                <div role="main" class="row">
+                    <div class="col-md-12">
+                        <h1 class="text-center">{% block heading %}MINT-Modul Data{% endblock %}</h1>
+                        <div id="content">
+                            {% block content -%}
+                            You should not see this.
+                            {%- endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

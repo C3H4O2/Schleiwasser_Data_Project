@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% import 'util.html' as util with context %}
+
+{% block content %}
+    <form action='/' method='GET'>
+        <div class="row">
+            <div class="col-lg">
+                {{- util.form_input_text(name="date", label="Datum", defaultvalue=date, addon=".2020") -}}
+                {%- for name, label, addon in (
+                        ("name", "Eintragender", ""),
+                        ("uz", "Uhrzeit", "Uhr"),
+                        ("gpsy", "GPS Breite", "°N"),
+                        ("gpsx", "GPS Länge", "°O"),
+                        ) %}
+                    {{- util.form_input_text(name=name, label=label, addon=addon) }}
+                {%- endfor %}
+
+                {%- call util.form_input_general("Ort") -%}
+                    <select class="custom-select" id='input-select-G' name='G'>
+                    {%- for option in ("GB1", "GB2", "GB3", "GB4", "GB5") -%}
+                        <option value="{{ option }}">{{ option }}</option>
+                    {%- endfor %}
+                    </select>
+                {%- endcall %}
+
+                <p>
+                    <strong>Hinweis:</strong>
+                    Die gesendeten Datem werden offen verfügbar gespeichert.
+                </p>
+
+                <div class="form-row">
+                    <input type='checkbox' class="ml-auto" value='send' id='send' name='send' />
+                    <button type="submit" class="btn btn-primary mr-auto">Senden</button>
+                </div>
+            </div>
+            <div class="col-lg">
+                {%- for name, label, addon in (
+                        ("temperatur", "Temperatur", "°C"),
+                        ("nitrat", "Nitrat", "mg/l"),
+                        ("nwl", "Nitrat WINLAB", "mg/l"),
+                        ("nitrit", "Nitrit", "mg/l"),
+                        ("niwl", "Nitrit WINLAB", "mg/l"),
+                        ("ammonium", "Ammonium", "mg/l"),
+                        ("awl", "Ammonium WINLAB", "mg/l"),
+                        ("phosphat", "Phosphat", "mg/l"),
+                        ("pwl", "Phosphat WINLAB", "mg/l"),
+                        ("phwert", "pH-Wert", "")
+                        ) %}
+                    {{- util.form_input_text(name=name, label=label, addon=addon) }}
+                {%- endfor %}
+            </div>
+        </div>
+    </form>
+    <div class="row my-4">
+        <div class="col text-right">
+            <a class="btn btn-success" href='/down' download><img src='static/DOWN.png'></a>
+        </div>
+        <div class="col text-left">
+            <a class="btn btn-info" href='/viewer'>Ansehen</a>
+        </div>
+    </div>
+{% endblock %}
