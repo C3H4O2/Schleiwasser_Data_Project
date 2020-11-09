@@ -94,7 +94,7 @@ class Entry():
             s_entry = self.get_stored_entry(self.entry['loc'], self.entry['date'])
             print("DEBUG: got stored entry")
             for i,v in s_entry.items():
-                print(i,v)
+                # print(i,v)
                 if self.entry[i] != v and v != None and self.entry[i] != None:
                     print(4)
                     self.error([i,v])
@@ -109,6 +109,7 @@ class Entry():
         print('Overwriting prevented: %s' % values)
 
     def store(self):
+        print("DEBUG: Entry is : " + self.entry)
         self.pre_overwriting()
         for m, v in self.entry.items():
             print("DEBUG: trying to enter next value")
