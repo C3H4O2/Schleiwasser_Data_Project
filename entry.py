@@ -107,7 +107,7 @@ class Entry():
         print('Overwriting prevented: %s' % values)
 
     def store(self):
-        print("DEBUG: Entry is : " + self.entry)
+        print("DEBUG: Entry is : ", self.entry)
         self.pre_overwriting()
         for m, v in self.entry.items():
             print("DEBUG: trying to enter next value")
