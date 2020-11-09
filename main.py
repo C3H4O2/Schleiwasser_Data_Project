@@ -2,6 +2,10 @@ from flask import Flask, render_template, request, redirect, make_response
 # from db_manager import init_db, add_to_db, get_db_tables, get_db_data
 from datetime import datetime, date
 from entry import Entry
+import logging
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
+
 
 app = Flask(__name__)
 entry = Entry()
