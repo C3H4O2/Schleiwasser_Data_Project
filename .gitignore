@@ -1,4 +1,8 @@
 __pycache__
 *.db
 test.py
+<<<<<<< HEAD
 *.csv
+=======
+log.txt
+>>>>>>> development

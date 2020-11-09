@@ -19,9 +19,6 @@ def index():
         if request.args.get('send')=='send':
             entry.store()
 
-            f = open('log.txt', 'a')
-            f.write(';'.join([str(da),str(uz), str(ort), str(temp), str(nitrat), str(nwl), str(nitrit), str(niwl), str(ammo), str(awl), str(phos), str(pwl), str(ph),str(gpsx),str(gpsy)])+'\t'+name+'\n')
-            f.close()
 
     except Exception as e:
         print("ERROR:", e)
