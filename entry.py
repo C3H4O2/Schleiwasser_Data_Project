@@ -116,5 +116,5 @@ class Entry():
     def get_table(self, table_name):
         with sqlite3.connect('data.db') as conn:
             c = conn.cursor()
-            c.execute(f"SELECT * FROM GB1")
-            print(c.fetchall())
+            c.execute(f"SELECT * FROM {table_name}")
+            return c.fetchall()
