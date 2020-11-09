@@ -95,4 +95,4 @@ def cookiedata():
     return render_template('cookie_data.html', l=l)
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', debug=True, port='8081')
+    app.run(host='127.0.0.1', port='8081')
