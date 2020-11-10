@@ -99,18 +99,18 @@ class Entry():
             conn.commit()
 
     def check_for_overwriting(self):
-        if self.check_if_entry_exists(self.entry['loc'], self.entry['date']):
-            s_entry = self.get_stored_entry(self.entry['loc'], self.entry['date'])
-            # print(s_entry)
-            for i,v in s_entry.items():
-                # print(i,v)
-                if self.entry[i] != v and v != None and self.entry[i] != None:
-                    print('OVERWRITING VALUES:', [i,v], [self.entry[i], self.entry['date'], self.entry['loc']])
-                    return True
+        s_entry = self.get_stored_entry(self.entry['loc'], self.entry['date'])
+        for i,v in s_entry.items():
+            if self.entry[i] != v and v != None and self.entry[i] != None:
+                print('OVERWRITING VALUES:', [i,v], [self.entry[i], self.entry['date'], self.entry['loc']])
+                return True
+
+
 
     def prevent_overwriting(self):
-        if self.check_for_overwriting():
-            self.error()
+        if self.check_if_entry_exists(self.entry['loc'], self.entry['date']):
+            if self.check_for_overwriting():
+                self.error()
         else:
             self.create_entry(self.entry['loc'], self.entry['date'])
 
@@ -125,7 +125,7 @@ class Entry():
                 if v != None and m != 'loc' and m != 'date':
                     self.edit_entry(self.entry['date'], self.entry['loc'], m, v)
         except OverwritingDetected:
-            print('Overwriting prevented. Values above')
+            print('OVERWRITING. Values above')
 
 
     def get_table(self, table_name):
