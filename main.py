@@ -6,7 +6,6 @@ import logging
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
-
 app = Flask(__name__)
 entry = Entry()
 
@@ -18,10 +17,11 @@ def index():
 
         if request.args.get('send')=='send':
             entry.store()
-
-
     except Exception as e:
-        print("ERROR:", e)
+        if e == 'overwriting':
+            return render_template('.html', a=a)
+        else:
+            print("ERROR:", e)
 
 
     dat = date.today()
