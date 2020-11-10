@@ -19,7 +19,7 @@ def index():
             entry.store()
     except Exception as e:
         if e == 'overwriting':
-            return render_template('.html', a=a)
+            return '''Overwriting ERROR'''
         else:
             print("ERROR:", e)
 
