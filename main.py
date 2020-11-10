@@ -46,45 +46,24 @@ def download():
 
 @app.route('/viewer')
 def viewer():
-    with open('templates/data.csv', 'r') as f:
-        t = f.read().split('\n')
-    for i in range(len(t)):
-        t[i] = t[i].split(',')
-    d = []
-    for e in t:
-        if e[0] not in d:
-            if e[0]!="":
-                d.append(e[0])
-    print(d[1:], d[1:-1])
-    d = d[1:]
-    return render_template('viewer.html', d=d)
+    l = ['GB1', 'GB2', 'GB3', 'GB4', 'GB5']
+    return render_template('viewer.html', l=l)
 
 @app.route('/tables', methods=['POST', 'GET'])
 def tables():
-    f = open('templates/data.csv', 'r')
-    t = f.read()
-    f.close()
-    t = t.split('\n')[:-1]
-    for i in range(len(t)):
-        t[i] = t[i].split(',')
-    da = request.args.get('date')
-    content1 = []
-    for i, e in enumerate(t):
-        if e[0]==da:
-            content1.append(t[i])
-    content = []
-    for i, gb in enumerate(['GB1', 'GB2', 'GB3', 'GB4', 'GB5']):
-        for e in content1:
-            if str(e[1]).strip()==str(gb).strip() and str(e[1]).strip() not in [l[1] for l in content]:
-                content.append(e)
+    loc = request.args.get('loc')
+    content = entry.get_table(loc)
+    content2 = []
+    for i in content:
+        content2.append([None for i in content[0]])
+    for i in range(len(content)):
+        for j in range(len(content[i])):
+            if content[i][j] == None or content[i][j] == 'None':
+                content2[i][j]='-'
             else:
-                for j, v in enumerate(e):
-                    if v.strip()!='' and v.strip()!='-':
-                        if content[len(content)-1][j].strip()=='' or content[len(content)-1][j].strip()=='':
-                            content[len(content)-1][j]=v
-    for i in range(len(content), 5):
-        content.append(['-','-','-','-','-','-','-','-','-','-','-'])
-    return render_template('tables.html', content=content)
+                content2[i][j]=content[i][j]
+    content = content2
+    return render_template('tables.html', c = content, loc=loc)
 
 @app.route('/cookiedata')
 def cookiedata():

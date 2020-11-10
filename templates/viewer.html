@@ -5,28 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MINT-Modul</title>
   <style>
-    body {color: white; font: 20px Roboto; background-image: url('static/img.jpg'); background-size : 100% auto}
+    body {color: white; font: 20px Roboto; background-image: url('static/images.jpg'); background-size : 100% auto}
     input {color: white; background: rgba(255, 255, 255, 0.35); font: 50px Roboto; margin:auto}
-    select, option {color: black; background: rgba(255, 255, 255, 0.35); font: 50px Roboto; margin:auto}
+    select {color: black; background: rgba(255, 255, 255, 0.35); font: 150px Roboto; margin:auto}
+    option {color: black; background: rgba(255, 255, 255, 0.35); font: 50px Roboto; margin:auto}
+    div {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%); text-align: center;}
   </style>
 </head>
 <body>
-    <center>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-    <form action='/tables'>
+  <div>
+    <form action='/tables' method="GET">
       <!-- <input placeholder='Datum' type='text' name='date' style='text-align: center'> -->
-      <select name="date" class="selectpicker form-control">
-        {% for dat in d %}
-        <option value="{{ dat }}">{{ dat }}</option>
+      <select name="loc" class="selectpicker form-control">
+        {% for loc in l %}
+          <option value="{{ loc }}">{{ loc }}</option>
         {% endfor %}
-      </select>
+      </select> <br><br>
       <input type='submit' name='view' value='Angucken' style='text-align: center'>
     </form>
-    </center>
-    <a id='lb' href='https://www.freepik.com/vectors/background'><p style='color: white;font: 20px Roboto; position: absolute; left: 5px; bottom:0px'>Background vector created by pikisuperstar - www.freepik.com</p></a>
+  </div>
 </body>
 </html>
