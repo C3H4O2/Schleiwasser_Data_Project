@@ -1,5 +1,10 @@
 import sqlite3
 
+
+class OverwritingDetected(Exception):
+    pass
+
+
 class Entry():
     def setup_db(self):
         self.locations = ['GB1', 'GB2', 'GB3', 'GB4', 'GB5']
@@ -16,9 +21,9 @@ class Entry():
         uz = uz if not uz == '' else None
         ort = request.args.get('G').replace(',', '.')
         temp = request.args.get('temperatur').replace(',', '.')
-        temp = int(temp) if len(temp)>0 and temp!='-' else None
+        temp = float(temp) if len(temp)>0 and temp!='-' else None
         nitrat = request.args.get('nitrat').replace(',', '.')
-        nitrat = int(nitrat) if len(nitrat)>0 and nitrat!='-' else None
+        nitrat = float(nitrat) if len(nitrat)>0 and nitrat!='-' else None
         nwl = request.args.get('nwl').replace(',', '.')
         nwl = float(nwl) if len(nwl)>0 and nwl!='-' else None
         nitrit = request.args.get('nitrit').replace(',', '.')
@@ -92,26 +97,35 @@ class Entry():
             c.execute(f"INSERT INTO {loc} (date) VALUES (?)", (date,))
             conn.commit()
 
-    def pre_overwriting(self):
+    def check_for_overwriting(self):
         if self.check_if_entry_exists(self.entry['loc'], self.entry['date']):
             s_entry = self.get_stored_entry(self.entry['loc'], self.entry['date'])
+            # print(s_entry)
             for i,v in s_entry.items():
                 # print(i,v)
                 if self.entry[i] != v and v != None and self.entry[i] != None:
-                    self.error([i,v])
-                    break
+                    print('OVERWRITING VALUES:', [i,v], [self.entry[i], self.entry['date'], self.entry['loc']])
+                    return True
+
+    def prevent_overwriting(self):
+        if self.check_for_overwriting():
+            self.error()
         else:
             self.create_entry(self.entry['loc'], self.entry['date'])
 
 
-    def error(self, values):
-        print('Overwriting prevented:', values)
+    def error(self):
+        raise OverwritingDetected
 
     def store(self):
-        self.pre_overwriting()
-        for m, v in self.entry.items():
-            if v != None and m != 'loc' and m != 'date':
-                self.edit_entry(self.entry['date'], self.entry['loc'], m, v)
+        try:
+            self.prevent_overwriting()
+            for m, v in self.entry.items():
+                if v != None and m != 'loc' and m != 'date':
+                    self.edit_entry(self.entry['date'], self.entry['loc'], m, v)
+        except OverwritingDetected:
+            print('Overwriting prevented. Values above')
+
 
     def get_table(self, table_name):
         with sqlite3.connect('data.db') as conn:
