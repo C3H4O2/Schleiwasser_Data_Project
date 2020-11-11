@@ -2,7 +2,9 @@ import sqlite3
 
 
 class OverwritingDetected(Exception):
-    pass
+    def __init__(self):
+        super().__init__('overwriting')
+
 
 
 class Entry():
@@ -125,7 +127,12 @@ class Entry():
                 if v != None and m != 'loc' and m != 'date':
                     self.edit_entry(self.entry['date'], self.entry['loc'], m, v)
         except OverwritingDetected:
+<<<<<<< HEAD
             print('OVERWRITING PREVENTED. Values above')
+=======
+            print('OVERWRITING. Values above')
+            raise OverwritingDetected
+>>>>>>> master
 
 
     def get_table(self, table_name):
