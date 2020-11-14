@@ -1,0 +1,74 @@
+:root {
+  --table-header-color: #00796b;
+  --table-border-color: #bdbdbd;
+  --table-bg-maincolor: #eeeeee;
+  --table-bg-seccolor: #e0e0e0;
+  --table-header-fontcolor: #ffffff;
+  --table-body-fontcolor: #212121;
+  --gradient-part1: #4db6ac;
+  --gardent-part2: #00897b;
+  --main-font-size: 1em;
+}
+
+* {
+  font-family: Quicksand;
+  font-size: 1em;
+}
+
+html, body, .container1 {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--gradient-part1);
+  background: -webkit-linear-gradient(333deg, var(--gradient-part1) 0%, var(--gardent-part2) 100%);
+  background: -o-linear-gradient(333deg, var(--gradient-part1) 0%, var(--gardent-part2) 100%);
+  background: linear-gradient(63deg, var(--gradient-part1) 0%, var(--gardent-part2) 100%);
+}
+
+.container1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.content-table {
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 7px 7px 1px 1px;
+  box-shadow: 0px 10px 15px 2px rgba(64,64,64,.7);
+}
+.content-table thead tr {
+  background-color: var(--table-header-color);
+  color: var(--table-header-fontcolor);
+  text-align: center;
+  font-weight: bold;
+}
+.content-table th, .content-table td{
+  padding: 8px 8px;
+}
+.content-table td{
+  font-weight: normal;
+  font-size: var(--main-font-size);
+}
+.content-table tbody tr{
+  background-color: var(--table-bg-maincolor);
+  color: var(--table-body-fontcolor);
+  text-align: center;
+  border-bottom: 1px solid var(--table-border-color)
+}
+.content-table tbody tr:nth-of-type(even){
+  background-color: var(--table-bg-seccolor);
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 3px solid var(--table-header-color);
+}
+
+h1 {
+  font-size: 5em;
+}

@@ -3,52 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tables</title>
-  <style>
-    body {color: white; font: 20px Roboto; background-image: url('static/images.jpg'); background-size : 100% auto}
-    h1 {margin: auto; color: white;}
-    table {margin: auto;}
-    table, th, td {
-      border: 1px solid white;
-    }
-    input {color: white; background: rgba(255, 255, 255, 0.35); font: 20px Roboto; margin:auto}
-    img { font: 20px Roboto; position: absolute; right: 5px; bottom:5px}
-    select {color: white;background: rgba(255, 255, 255, 0.35); font: 20px Roboto;}
-    option {color: black;background: rgba(255, 255, 255, 0.35); font: 20px Roboto;}
-    td {margin: 10px; text-align: center}
-  </style>
+  <link rel="stylesheet" href="/static/css/table-styles.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Quicksand">
+  <title>Table</title>
 </head>
+
 <body>
-  <center><h1>{{loc}}</h1></center>
-  <br>
-    <table style='width: 75%'>
-      <tr>
-        <th>Datum</th>
-        <th>Zeit</th>
-        <th>Temperatur</th>
-        <th>NitratAQ</th>
-        <th>NitratWIN</th>
-        <th>NitritAQ</th>
-        <th>NitritWIN</th>
-        <th>AmmoniumAQ</th>
-        <th>AmmoniumWIN</th>
-        <th>PhosphatAQ</th>
-        <th>PhosphatWIN</th>
-        <th>pH-Wert</th>
-        <th>GPS-Länge</th>
-        <th>GPS-Breite</th>
+  <div class='container1'>
+    <div class='header-item'>
+      <h1>{{loc}}</h1>
+    </div>
 
-
-      </tr>
-      {% for r in c %}
-      <tr>
-        {% for e in r %}
-          <td>{{e}}</td>
-        {% endfor %}
-      </tr>
-      {% endfor %}
-    </table>
-  <a id='lb' href='https://www.freepik.com/vectors/background'><p style='color: white;font: 20px Roboto; position: absolute; left: 5px; bottom:0px'>Background vector created by pikisuperstar - www.freepik.com</p></a>
-  <i class="fas fa-arrow-left"></i>
+    <div class='table-item'>
+      <table class="content-table">
+        <colgroup>
+          <col class='Datum' span='1'>
+          <col class='Zeit' span='1'>
+          <col class='Temperatur' span='1'>
+          <col class='NitratAQ' span='1'>
+          <col class='NitratWIN' span='1'>
+          <col class='NitritAQ' span='1'>
+          <col class='NitritWIN' span='1'>
+          <col class='AmmoniumAQ' span='1'>
+          <col class='AmmoniumWIN' span='1'>
+          <col class='PhosphatAQ' span='1'>
+          <col class='PhosphatWIN' span='1'>
+          <col class='pH-Wert' span='1'>
+          <col class='GPS-Länge' span='1'>
+          <col class='GPS-Breite' span='1'>
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Datum</th>
+            <th>Zeit</th>
+            <th>Temperatur</th>
+            <th>NitratAQ</th>
+            <th>NitratWIN</th>
+            <th>NitritAQ</th>
+            <th>NitritWIN</th>
+            <th>AmmoniumAQ</th>
+            <th>AmmoniumWIN</th>
+            <th>PhosphatAQ</th>
+            <th>PhosphatWIN</th>
+            <th>pH-Wert</th>
+            <th>GPS-Länge</th>
+            <th>GPS-Breite</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in c %}
+          <tr>
+            {% for e in r %}
+              <td>{{e}}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </body>
 </html>
