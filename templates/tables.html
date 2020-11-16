@@ -16,6 +16,7 @@
     select {color: white;background: rgba(255, 255, 255, 0.35); font: 20px Roboto;}
     option {color: black;background: rgba(255, 255, 255, 0.35); font: 20px Roboto;}
     td {margin: 10px; text-align: center}
+    a {color: white; text-decoration: none}
   </style>
 </head>
 <body>
@@ -25,18 +26,18 @@
       <tr>
         <th>Datum</th>
         <th>Zeit</th>
-        <th>Temperatur</th>
-        <th>NitratAQ</th>
-        <th>NitratWIN</th>
-        <th>NitritAQ</th>
-        <th>NitritWIN</th>
-        <th>AmmoniumAQ</th>
-        <th>AmmoniumWIN</th>
-        <th>PhosphatAQ</th>
-        <th>PhosphatWIN</th>
-        <th>pH-Wert</th>
-        <th>GPS-Länge</th>
-        <th>GPS-Breite</th>
+        <th><a href="/chart?loc={{loc}}&keyword=temp">Temperatur</a></th>
+        <th><a href="/chart?loc={{loc}}&keyword=nitratAQ">NitratAQ</a></th>
+        <th><a href="/chart?loc={{loc}}&keyword=nitratWIN">NitratWIN</a></th>
+        <th><a href="/chart?loc={{loc}}&keyword=nitritAQ">NitritAQ</a></th>
+        <th><a href="/chart?loc={{loc}}&keyword=nitritWIN">NitritWIN</a></th>
+        <th><a href="/chart?loc={{loc}}&keyword=ammoniumAQ">AmmoniumAQ</a></th>
+        <th><a href="/chart?loc={{loc}}&keyword=ammoniumWIN">AmmoniumWIN</a></th>
+        <th><a href="/chart?loc={{loc}}&keyword=phosphatAQ">PhosphatAQ</a></th>
+        <th><a href="/chart?loc={{loc}}&keyword=phosphatWIN">PhosphatWIN</a></th>
+        <th><a href="/chart?loc={{loc}}&keyword=pHWert">pH-Wert</a></th>
+        <th><a href="/chart?loc={{loc}}&keyword=gpsLaenge">GPS-Länge</a></th>
+        <th><a href="/chart?loc={{loc}}&keyword=gpsBreite">GPS-Breite</a></th>
 
 
       </tr>
