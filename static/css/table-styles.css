@@ -20,6 +20,11 @@ html, body, .container1 {
   margin: 0;
 }
 
+a {
+  color: var(--table-header-fontcolor);
+  text-decoration: none;
+}
+
 body {
   background: var(--gradient-part1);
   background: -webkit-linear-gradient(333deg, var(--gradient-part1) 0%, var(--gardent-part2) 100%);
