@@ -127,9 +127,8 @@ class Entry():
                 if v != None and m != 'loc' and m != 'date':
                     self.edit_entry(self.entry['date'], self.entry['loc'], m, v)
         except OverwritingDetected:
-            print('OVERWRITING. Values above')
+            print('OVERWRITING PREVENTED. Values above')
             raise OverwritingDetected
-
 
     def get_table(self, table_name):
         with sqlite3.connect('data.db') as conn:
