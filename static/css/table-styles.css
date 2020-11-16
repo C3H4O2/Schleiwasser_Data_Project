@@ -1,12 +1,12 @@
 :root {
-  --table-header-color: #00796b;
+  --table-header-color: #009973;
   --table-border-color: #bdbdbd;
   --table-bg-maincolor: #eeeeee;
   --table-bg-seccolor: #e0e0e0;
   --table-header-fontcolor: #ffffff;
   --table-body-fontcolor: #212121;
-  --gradient-part1: #4db6ac;
-  --gardent-part2: #00897b;
+  --gradient-part1: #4dffa6;
+  --gardent-part2: #00997b;
   --main-font-size: 1em;
 }
 
@@ -76,4 +76,8 @@ body {
 
 h1 {
   font-size: 5em;
+}
+
+body:not(.nohover) th:hover {
+  background-color: #008060;
 }
