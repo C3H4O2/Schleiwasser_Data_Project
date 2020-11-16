@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diagram</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand"/>
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <style>
+
+  body {
+  	background-image: url('static/images.jpg');
+    background-size : 100% auto;
+  	color: white;
+  }
+
+  .big {
+  	font-size: 80px;
+  }
+
+  .middle {
+  	padding: 0px;
+  	margin: 0px;
+  	position: absolute;
+  	left: 50%;
+  	transform: translate(-50%,0%);
+  }
+
+  .quicksand {
+  	font-family: Quicksand;
+  }
+
+  .down {
+  	position: absolute;
+  	bottom: 0px;
+  	right: 50%;
+  	transform: translate(-50%, 0%);
+  }
+
+  canvas {
+  	color: white;
+  }
+
+  .box {
+  	background-color: white;
+  	color: white;
+  }
+
+</style>
+</head>
+<body>
+  <h1 class="middle quicksand big">Headline</h1>
+  <div class="box">
+    <canvas class="middle down" id="myChart" width="400" height="150"></canvas>
+  </div>
+  <script>
+
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var scatterChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          datasets: [{
+              label: 'Scatter Dataset',
+              backgroundColor: 'rgba(94,178,201,0.25)',
+              borderColor: 'rgb(94,178,201)',
+              lineTension: 0, //removes the curves
+              data: [
+                {% for date, value in d %}
+                  {x: {{date}}, y: {{value}}},
+                {% endfor %}
+              ]
+          }]
+      },
+      options: {
+          scales: {
+              xAxes: [{
+                  type: 'linear',
+                  position: 'bottom'
+              }],
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+
+          }
+      }
+  });
+
+
+  </script>
+</body>
+</html>

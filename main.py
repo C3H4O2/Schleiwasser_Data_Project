@@ -74,5 +74,30 @@ def cookiedata():
     print(l)
     return render_template('cookie_data.html', l=l)
 
+@app.route('/chart', methods=['GET', 'POST'])
+def chart():
+    loc = request.args.get('loc')
+    keyword = request.args.get('keyword')
+    keys = ['date', 'time', 'temp', 'nitratAQ', 'nitratWIN', 'nitritAQ', 'nitritWIN', 'ammoniumAQ', 'ammoniumWIN', 'phosphatAQ', 'phostphatWIN', 'pHWert', 'gpsLaenge', 'gpsBreite']
+    ind = keys.index(keyword)
+
+    dic = dict()
+
+    for e in entry.get_table(loc):
+        if not e[ind] == None:
+            date = e[0]
+            date = date.split('.')
+            date = int(date[0])+int(date[1])*30+int(date[2])*365
+            dic[date]=float(str(e[ind]).replace('<','').replace('>',''))
+    di = dict()
+    for i in sorted(dic):
+        di[i] = dic[i]
+    print(di)
+    d = zip(di.keys(), di.items())
+    return render_template('chart.html', d = d)
+
+
+
+
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port='8081')
