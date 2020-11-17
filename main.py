@@ -81,7 +81,10 @@ def chart():
     keys = ['date', 'time', 'temp', 'nitratAQ', 'nitratWIN', 'nitritAQ', 'nitritWIN', 'ammoniumAQ', 'ammoniumWIN', 'phosphatAQ', 'phostphatWIN', 'pHWert', 'gpsLaenge', 'gpsBreite']
     ind = keys.index(keyword)
 
+    name = {'date':'Datum', 'time':'Zeit', 'temp':'Temperatur', 'nitratAQ':'Nitrat Aquanal', 'nitratWIN':'Nitrat WINLAB', 'nitritAQ':'Nitrit Aquanal', 'nitritWIN':'Nitrit WINLAB', 'ammoniumAQ':'Ammonium Aquanal', 'ammoniumWIN':'Ammonium WINLAB', 'phosphatAQ':'Phosphat Aquanal', 'phostphatWIN':'Phosphat WINLAB', 'pHWert':'pH-Wert', 'gpsLaenge':'GPS-Laengengrad', 'gpsBreite':'GPS-Breitengrad'}
+
     dic = dict()
+    title = loc + ' - ' + name[keyword]
 
     for e in entry.get_table(loc):
         if not e[ind] == None:
@@ -94,7 +97,7 @@ def chart():
         di[i] = dic[i]
     print(di)
     d = zip(di.keys(), di.items())
-    return render_template('chart.html', d = d)
+    return render_template('chart.html', d = d, title = title)
 
 
 

@@ -49,7 +49,7 @@
 </style>
 </head>
 <body>
-  <h1 class="middle quicksand big">Headline</h1>
+  <h2 class="middle quicksand big">{{ title }}</h2>
   <div class="box">
     <canvas class="middle down" id="myChart" width="400" height="150"></canvas>
   </div>
@@ -62,7 +62,7 @@
           datasets: [{
               label: 'Scatter Dataset',
               backgroundColor: 'rgba(94,178,201,0.25)',
-              borderColor: 'rgb(94,178,201)',
+              borderColor: 'rgba(94,178,201,0)',
               lineTension: 0, //removes the curves
               data: [
                 {% for date, value in d %}
