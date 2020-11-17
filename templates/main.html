@@ -2,7 +2,7 @@
 {% import 'util.html' as util with context %}
 
 {% block content %}
-    <form action='/' method='GET'>
+    <form action='/data' method='GET'>
         <div class="row">
             <div class="col-lg">
                 {{- util.form_input_text(name="date", label="Datum", defaultvalue=date, addon=".2020") -}}
