@@ -10,8 +10,8 @@
 
 <body>
   <div class='container1'>
-    <form action='tables' method="GET">
-      <select name="loc" class="selectpicker form-control" onchange="form.submit()">
+    <form action='viewer' method="GET">
+      <select name="loc" class="loc-select" onchange="form.submit()">
         {% for loc in l %}
           <option value="{{ loc }}">{{ loc }}</option>
         {% endfor %}

@@ -70,7 +70,7 @@ def tables():
                 content2[i][j]=content[i][j]
 
     content = content2
-    return render_template('tables.html', c = content, loc=loc, l=l)
+    return render_template('viewer.html', c = content, loc=loc, l=l)
 
 @app.route('/cookiedata')
 def cookiedata():
