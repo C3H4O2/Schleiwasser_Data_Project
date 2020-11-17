@@ -9,8 +9,12 @@ log.setLevel(logging.ERROR)
 app = Flask(__name__)
 entry = Entry()
 
-@app.route('/', methods = ['POST', 'GET'])
+@app.route('/')
 def index():
+    return render_template('index.html')
+
+@app.route('/data', methods = ['POST', 'GET'])
+def data():
     cd = request.cookies.get('l') if request.cookies.get('l')!=None else ''
     try:
         entry.get(request)
