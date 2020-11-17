@@ -44,26 +44,33 @@ def index():
 def download():
     return render_template('log.txt')
 
-@app.route('/viewer')
-def viewer():
-    l = ['GB1', 'GB2', 'GB3', 'GB4', 'GB5']
-    return render_template('viewer.html', l=l)
+# @app.route('/viewer', methods=['POST', "GET"])
+# def viewer():
+#     loc = request.args.get('loc')
+#     l = ['GB1', 'GB2', 'GB3', 'GB4', 'GB5']
+#     return render_template('viewer.html', l=l, loc=loc)
 
-@app.route('/tables', methods=['POST', 'GET'])
+@app.route('/viewer', methods=['POST', 'GET'])
 def tables():
     loc = request.args.get('loc')
+    l = ['GB1', 'GB2', 'GB3', 'GB4', 'GB5']
+    if loc == None:
+        loc = 'GB1'
     content = entry.get_table(loc)
     content2 = []
+
     for i in content:
         content2.append([None for i in content[0]])
+
     for i in range(len(content)):
         for j in range(len(content[i])):
             if content[i][j] == None or content[i][j] == 'None':
                 content2[i][j]='-'
             else:
                 content2[i][j]=content[i][j]
+
     content = content2
-    return render_template('tables.html', c = content, loc=loc)
+    return render_template('tables.html', c = content, loc=loc, l=l)
 
 @app.route('/cookiedata')
 def cookiedata():
