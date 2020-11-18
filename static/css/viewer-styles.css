@@ -101,5 +101,5 @@ body:not(.nohover) th:hover {
 
 .tabcontent {
   display: none;
-  background-color: var(--table-bg-maincolor);
+  background-color: var(--table-header-color);
 }
