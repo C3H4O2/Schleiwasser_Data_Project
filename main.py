@@ -11,7 +11,13 @@ entry = Entry()
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    visited_before = request.cookies.get('vb')
+    if visited_before=='' or visited_before==None:
+        resp = make_response(render_template('index.html'))
+        resp.set_cookie('vb', 'True')
+    else:
+        return render_template('noanimation.html')
+    return resp
 
 @app.route('/data', methods = ['POST', 'GET'])
 def data():
