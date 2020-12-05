@@ -41,7 +41,7 @@ def data():
         link = request.args.get('url')
         resp = make_response(render_template('main.html', date=dat, link=link))
     else:
-        resp = make_response(render_template('main.html', date=dat, link='static/images.jpg'))
+        resp = make_response(render_template('main.html', date=dat, link='static/img/backgrounds/images.jpg'))
 
     try:
         resp.set_cookie('l', cd+' '.join([str(i) for i in l])+'\n')
