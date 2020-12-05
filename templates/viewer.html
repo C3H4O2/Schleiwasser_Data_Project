@@ -5,26 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/static/viewer-styles.css">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Quicksand">
+  <script type="text/javascript" src="/static/js/viewer.js"></script>
   <title>{{loc}}-Table</title>
 </head>
 
 <body>
-  <div class='container1'>
-    <form action='viewer' method="GET">
-      <select name="loc" class="loc-select" onchange="form.submit()">
-        {% for loc in l %}
-          <option value="{{ loc }}">{{ loc }}</option>
-        {% endfor %}
-      </select>
-      <!-- <input type='submit' name='view' value='Angucken' style='text-align: center'> -->
-    </form>
-
+<div class='flex-container'>
+  <div class='table'>
     <div class='header-item'>
       <h1>{{loc}}</h1>
     </div>
 
     <div class='table-item'>
-      <table class="content-table">
+      <table class="table-content">
         <colgroup>
           <col class='Datum' span='1'>
           <col class='Zeit' span='1'>
@@ -71,5 +64,25 @@
       </table>
     </div>
   </div>
+
+  <div class='selectors'>
+    <div class="tab">
+      <button class="tablinks" onclick="openOptions(event, 'Table-tab')">Tables</button>
+      <button class="tablinks" onclick="openOptions(event, 'Graphs-tab')">Graphoptions</button>
+    </div>
+    <div id="Table-tab" class="tabcontent">
+        <form action='viewer' method="GET">
+          <select name="loc" onchange="form.submit()">
+            {% for loc in l %}
+              <option value="{{ loc }}">{{ loc }}</option>
+            {% endfor %}
+          </select>
+        </form>
+    </div>
+    <div id='Graphs-tab' class='tabcontent'>
+      <p>test</p>
+    </div>
+  </div>
+</div>
 </body>
 </html>
