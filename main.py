@@ -9,11 +9,8 @@ log.setLevel(logging.ERROR)
 app = Flask(__name__)
 entry = Entry()
 
-@app.route('/')
-def index():
-    return render_template('index.html')
 
-@app.route('/data', methods = ['POST', 'GET'])
+@app.route('/', methods = ['POST', 'GET'])
 def data():
     cd = request.cookies.get('l') if request.cookies.get('l')!=None else ''
     try:
@@ -48,33 +45,11 @@ def data():
 def download():
     return render_template('log.txt')
 
-# @app.route('/viewer', methods=['POST', "GET"])
-# def viewer():
-#     loc = request.args.get('loc')
-#     l = ['GB1', 'GB2', 'GB3', 'GB4', 'GB5']
-#     return render_template('viewer.html', l=l, loc=loc)
 
 @app.route('/viewer', methods=['POST', 'GET'])
-def tables():
-    loc = request.args.get('loc')
-    l = ['GB1', 'GB2', 'GB3', 'GB4', 'GB5']
-    if loc == None:
-        loc = 'GB1'
-    content = entry.get_table(loc)
-    content2 = []
+def viewer():
+    return render_template('viewer.html')
 
-    for i in content:
-        content2.append([None for i in content[0]])
-
-    for i in range(len(content)):
-        for j in range(len(content[i])):
-            if content[i][j] == None or content[i][j] == 'None':
-                content2[i][j]='-'
-            else:
-                content2[i][j]=content[i][j]
-
-    content = content2
-    return render_template('viewer.html', c = content, loc=loc, l=l)
 
 @app.route('/cookiedata')
 def cookiedata():
@@ -84,6 +59,20 @@ def cookiedata():
         l[i] = l[i].split(' ')
     print(l)
     return render_template('cookie_data.html', l=l)
+
+
+@app.route('/postmethod', methods = ['POST'])
+def post_javascript_data():
+    names = {'date':'Datum', 'time':'Zeit', 'temp':'Temperatur', 'nitratAQ':'Nitrat Aquanal', 'nitratWIN':'Nitrat WINLAB', 'nitritAQ':'Nitrit Aquanal', 'nitritWIN':'Nitrit WINLAB', 'ammoniumAQ':'Ammonium Aquanal', 'ammoniumWIN':'Ammonium WINLAB', 'phosphatAQ':'Phosphat Aquanal', 'phostphatWIN':'Phosphat WINLAB', 'pHWert':'pH-Wert', 'gpsLaenge':'GPS-Laengengrad', 'gpsBreite':'GPS-Breitengrad'}
+
+    key = request.form['test_data'].strip('"')
+    print("Key:", key)
+
+    name = names[key]
+    print("Name:", name)
+
+    return name
+
 
 @app.route('/chart', methods=['GET', 'POST'])
 def chart():

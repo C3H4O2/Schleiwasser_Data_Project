@@ -1,88 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
+	<!-- Load plotly.js into the DOM -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/static/css/viewer-styles.css">
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Quicksand">
+	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src="/static/js/viewer.js"></script>
-  <title>{{loc}}-Table</title>
+
+  <style media="screen">
+    html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  </style>
 </head>
 
 <body>
-<div class='flex-container'>
-  <div class='table'>
-    <div class='header-item'>
-      <h1>{{loc}}</h1>
-    </div>
-
-    <div class='table-item'>
-      <table class="table-content">
-        <colgroup>
-          <col class='Datum' span='1'>
-          <col class='Zeit' span='1'>
-          <col class='Temperatur' span='1'>
-          <col class='NitratAQ' span='1'>
-          <col class='NitratWIN' span='1'>
-          <col class='NitritAQ' span='1'>
-          <col class='NitritWIN' span='1'>
-          <col class='AmmoniumAQ' span='1'>
-          <col class='AmmoniumWIN' span='1'>
-          <col class='PhosphatAQ' span='1'>
-          <col class='PhosphatWIN' span='1'>
-          <col class='pH-Wert' span='1'>
-          <col class='GPS-Länge' span='1'>
-          <col class='GPS-Breite' span='1'>
-        </colgroup>
-        <thead>
-          <tr>
-            <th>Datum</th>
-            <th>Zeit</th>
-            <th><a href="/chart?loc={{loc}}&keyword=temp">Temperatur</a></th>
-            <th><a href="/chart?loc={{loc}}&keyword=nitratAQ">NitratAQ</a></th>
-            <th><a href="/chart?loc={{loc}}&keyword=nitratWIN">NitratWIN</a></th>
-            <th><a href="/chart?loc={{loc}}&keyword=nitritAQ">NitritAQ</a></th>
-            <th><a href="/chart?loc={{loc}}&keyword=nitritWIN">NitritWIN</a></th>
-            <th><a href="/chart?loc={{loc}}&keyword=ammoniumAQ">AmmoniumAQ</a></th>
-            <th><a href="/chart?loc={{loc}}&keyword=ammoniumWIN">AmmoniumWIN</a></th>
-            <th><a href="/chart?loc={{loc}}&keyword=phosphatAQ">PhosphatAQ</a></th>
-            <th><a href="/chart?loc={{loc}}&keyword=phosphatWIN">PhosphatWIN</a></th>
-            <th><a href="/chart?loc={{loc}}&keyword=pHWert">pH-Wert</a></th>
-            <th><a href="/chart?loc={{loc}}&keyword=gpsLaenge">GPS-Länge</a></th>
-            <th><a href="/chart?loc={{loc}}&keyword=gpsBreite">GPS-Breite</a></th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for r in c %}
-          <tr>
-            {% for e in r %}
-              <td>{{e}}</td>
-            {% endfor %}
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class='selectors'>
-    <div class="tab">
-      <button class="tablinks" onclick="openOptions(event, 'Table-tab')">Tables</button>
-      <button class="tablinks" onclick="openOptions(event, 'Graphs-tab')">Graphoptions</button>
-    </div>
-    <div id="Table-tab" class="tabcontent">
-        <form action='viewer' method="GET">
-          <select name="loc" onchange="form.submit()">
-            {% for loc in l %}
-              <option value="{{ loc }}">{{ loc }}</option>
-            {% endfor %}
-          </select>
-        </form>
-    </div>
-    <div id='Graphs-tab' class='tabcontent'>
-      <p>test</p>
-    </div>
-  </div>
-</div>
+  <div id="graph" style="width:100%;height:100%;"></div>
+  <!-- <script type="text/javascript" src="/static/js/viewer.js"></script> -->
 </body>
-</html>

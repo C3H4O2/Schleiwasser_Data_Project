@@ -3,3 +3,7 @@ __pycache__
 test.py
 *.csv
 log.txt
+viewer_old.js
+viewer2.js
+viewer2.html
+data.txt
