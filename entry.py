@@ -8,6 +8,9 @@ class OverwritingDetected(Exception):
 
 
 class Entry():
+    def __init__(self):
+        self.locations = ['GB1', 'GB2', 'GB3', 'GB4', 'GB5']
+        
     def setup_db(self):
         self.locations = ['GB1', 'GB2', 'GB3', 'GB4', 'GB5']
         with sqlite3.connect('data.db') as conn:
