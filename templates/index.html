@@ -1,11 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Homepage</title>
+    <title>SWAP</title>
+
+    <link href="static/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <h1>Hompage</h1>
-  
+    <header>
+
+    <div class="hero">
+      <span class='intro'>
+      <div class='typewriter'>
+        <div class="typewriter-text"><p class='special'>S</p>chlei</div>
+        <div class="typewriter-text"><p class='special'>W</p>asser</div>
+        <div class="typewriter-text"><p class='special'>A</p>nalyse</div>
+        <div class="typewriter-text"><p class='special'>P</p>rojekt</div>
+      </div>
+
+    </div>
+
+    <div class='login logdiv' id='logdiv'>
+      <button class="login collapsible">Login</button>
+      <div class='content'>
+        <form class="box" action="", method='post'>
+          <input type="password" name="passwd" id="passwd" placeholder="Password">
+          <input type="submit" name="" value="Login">
+        </form>
+      </div>
+      <button class="login" onclick="document.location.href = document.location.href+'/data';">Data</button>
+      <button class="login" onclick="document.location.href = document.location.href+'/data';">Visualization</button>
+      <button class="login" onclick="document.location.href = document.location.href+'/data';">Credits</button>
+    </div>
+
+    <!-- <div class="logo">
+      <a href='https://www.plus-mint.de/'><img class="logo" src='static/img/logos/logo2.png'></a>
+      <a href='https://www.louisenlund.de/'><img class="logo" src='static/img/logos/logo.png'></a>
+    </div> -->
+
+  </header>
+  <script>
+var coll = document.getElementsByClassName("collapsible");
+var lgns = document.getElementsByClassName("logdiv");
+var logos = document.getElementsByClassName("logo");
+var text = document.getElementsByClassName("typewriter-text");
+var i;
+var td = text[0].style.display;
+// var ld = logos[0].style.display;
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    var content = this.nextElementSibling;
+    if(content.style.display == "block"){
+      content.style.display = "none";
+      for(j=0;j<lgns.length;j++){
+        lgns[j].style.transition = '0.25s';
+        lgns[j].style.width = '50%';
+      }
+      setTimeout(function(){
+        for(j=0;j<logos.length;j++){
+          logos[j].style.display = ld;
+          logos[j].style.animation = 'none';
+        }
+        for(j=0;j<text.length;j++){
+          text[j].style.display = td;
+          text[j].style.animation = 'none';
+        }
+      }, 100);
+    }else {
+      content.style.display = "block";
+      for(j=0;j<logos.length;j++){
+        logos[j].style.display = 'none';
+        logos[j].style.animation = 'none';
+      }
+      for(j=0;j<text.length;j++){
+        text[j].style.display = 'none';
+        text[j].style.animation = 'none';
+      }
+      for(j=0;j<lgns.length;j++){
+        lgns[j].style.transition = '0.25s';
+        lgns[j].style.width = '100%';
+      }
+    }
+  });
+}
+</script>
 </body>
 </html>

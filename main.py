@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, make_response
 # from db_manager import init_db, add_to_db, get_db_tables, get_db_data
 from datetime import datetime, date
 from entry import Entry
+from simhash import Simhash
 import logging
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
@@ -9,6 +10,20 @@ log.setLevel(logging.ERROR)
 app = Flask(__name__)
 entry = Entry()
 
+@app.route('/', methods = ['POST', 'GET'])
+def index():
+    try:
+        if Simhash(request.form.get('passwd')).value==7206548024406906014:
+            return data()
+    except:
+        pass
+    visited_before = request.cookies.get('vb')
+    if visited_before=='' or visited_before==None:
+        resp = make_response(render_template('index.html'))
+        resp.set_cookie('vb', 'True')
+    else:
+        return render_template('noanimation.html')
+    return resp
 
 @app.route('/', methods = ['POST', 'GET'])
 def data():
@@ -32,7 +47,7 @@ def data():
         link = request.args.get('url')
         resp = make_response(render_template('main.html', date=dat, link=link))
     else:
-        resp = make_response(render_template('main.html', date=dat, link='static/images.jpg'))
+        resp = make_response(render_template('main.html', date=dat, link='static/img/backgrounds/images.jpg'))
 
     try:
         resp.set_cookie('l', cd+' '.join([str(i) for i in l])+'\n')
