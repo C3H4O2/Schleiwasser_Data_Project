@@ -25,7 +25,7 @@ def index():
         return render_template('noanimation.html')
     return resp
 
-@app.route('/', methods = ['POST', 'GET'])
+@app.route('/data', methods = ['POST', 'GET'])
 def data():
     cd = request.cookies.get('l') if request.cookies.get('l')!=None else ''
     try:
