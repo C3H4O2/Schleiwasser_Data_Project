@@ -20,7 +20,6 @@ function openOptions(evt, tabName) {
 }
 
 
-
 $(function() {
   document.getElementById("defaultopen").click();
   var lookup = {
