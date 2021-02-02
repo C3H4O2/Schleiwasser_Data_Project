@@ -1,4 +1,28 @@
+function openOptions(evt, tabName) {
+
+  var i, tabcontent, tablinks;
+
+
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+
+  }
+
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+
+}
+
+
+
 $(function() {
+  document.getElementById("defaultopen").click();
   var lookup = {
     Temperatur: {'GB1': {'x': ['2020-08-25', '2020-09-01', '2020-09-08', '2020-10-07'], 'y': [10, 10, 0, 10]}, 'GB2': {'x': ['2020-08-25', '2020-09-01', '2020-09-08', '2020-09-15', '2020-09-22', '2020-10-07', '2020-10-20'], 'y': [10, 10, 10, 10, 10, 0.5, 10]}, 'GB3': {'x': ['2020-08-25', '2020-09-01', '2020-09-08', '2020-09-15', '2020-10-07', '2020-10-16', '2020-10-20'], 'y': [10, 10, 10, 10, 10, 10, 10]}, 'GB4': {'x': ['2020-08-25', '2020-09-01', '2020-09-08', '2020-09-15', '2020-09-22', '2020-10-07'], 'y': [10, 10, 10, 10, '<10', 10]}, 'GB5': {'x': ['2020-08-25', '2020-09-22', '2020-10-07', '2020-10-20', '2020-09-29'], 'y': [10, 10, 10, 10, 10]}},
     // nitratAQ: {
