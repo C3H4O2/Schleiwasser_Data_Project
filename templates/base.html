@@ -10,15 +10,78 @@
 
         <title>{% block title %}MINT-Modul{% endblock %}</title>
         <style>
-            .own-bg {
-                background-image: url("static/img/backgrounds/images.jpg");
-                background-size: 100% auto;
-                background-attachment: fixed;
-                min-height: 100vh;
-            }
-            .input-group-prepend > .input-group-text {
-                font-weight: bold;
-            }
+         body {
+             border: none;
+             font-family: monospace;
+         }
+         .own-bg {
+             background-image: url("static/img/backgrounds/bg1.jpg");
+             background-size: cover;
+             min-height: 100vh;
+         }
+         .input-group-prepend > .input-group-text {
+             font-weight: bold;
+             color: white;
+             background-color: rgba(0,0,0,0.7);
+             border: none;
+         }
+         .input-group-append > .input-group-text {
+             color: white;
+             background-color: rgba(0,0,0,0.7);
+             border: none;
+         }
+         .form-control {
+             background-color: rgba(0,0,0,0.5);
+             color: white;
+             border: none;
+         }
+         .form-control:focus {
+             background-color: rgba(0,0,0,0.6);
+             color: white;
+         }
+         .form-control:active {
+             background-color: rgba(0,0,0,0.6);
+             color: white;
+         }
+         .text-center {
+             top: 50px;
+             font-size: 56px;
+         }
+         .menu {
+             position: fixed;
+             width: 100%;
+             height: 7.5%;
+             bottom: 0;
+             text-align: center;
+             overflow: hidden;
+             transition: 0.15s;
+         }
+         .menu:hover{
+             height: 15%;
+         }
+         .button {
+             width: 25%;
+             height: 100%;
+             float: left;
+             display: block;
+             border: none;
+             background-color: rgba(0,0,0,0.5);
+             text-align: center;
+             font-size: 3vh;
+             color: white;
+             border: 1px rgba(255,255,255,0.1);
+             border-style: none solid none solid;
+         }
+         .button:hover {
+             background-color: rgba(0,0,0,0.6);
+         }
+         #checkbox {
+             width: 10vw;
+             font-size: 50px;
+         }
+         #sendbutton {
+             width: 40%;
+         }
         </style>
     </head>
     <body>
@@ -26,7 +89,9 @@
             <div class="container-xl">
                 <div role="main" class="row">
                     <div class="col-md-12">
+                        <br>
                         <h1 class="text-center">{% block heading %}MINT-Modul Data{% endblock %}</h1>
+                        <br>
                         <div id="content">
                             {% block content -%}
                             You should not see this.
@@ -35,6 +100,13 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="menu">
+            <button id="checkbox" class="button" onclick="let check = document.getElementById('send').checked; document.getElementById('send').checked = !check;if(!check){document.getElementById('checkbox').innerHTML = '✔';}else{document.getElementById('checkbox').innerHTML = '✖';}">✖</button>
+            <button id="sendbutton" class="button" onclick="document.getElementById('dataform').submit();">Senden</button>
+            <!-- <button class="button" onclick="document.location.href = '/data';"> </button> -->
+            <button class="button" onclick="document.location.href = '/viewer';">Ansehen</button>
+            <button class="button" onclick="document.location.href = '/down';">Herunterladen</button>
         </div>
     </body>
 </html>

@@ -2,7 +2,7 @@
 {% import 'util.html' as util with context %}
 
 {% block content %}
-    <form action='/data' method='GET'>
+    <form action='/data' method='GET' id="dataform">
         <div class="row">
             <div class="col-lg">
                 {{- util.form_input_text(name="date", label="Datum", defaultvalue=date, addon=".2020") -}}
@@ -16,7 +16,7 @@
                 {%- endfor %}
 
                 {%- call util.form_input_general("Ort") -%}
-                    <select class="custom-select" id='input-select-G' name='G'>
+                    <select class="custom-select form-control" id='input-select-G' name='G'>
                     {%- for option in ("GB1", "GB2", "GB3", "GB4", "GB5") -%}
                         <option value="{{ option }}">{{ option }}</option>
                     {%- endfor %}
@@ -29,8 +29,7 @@
                 </p>
 
                 <div class="form-row">
-                    <input type='checkbox' class="ml-auto" value='send' id='send' name='send' />
-                    <button type="submit" class="btn btn-primary mr-auto">Senden</button>
+                    <input type='checkbox' class="ml-auto" hidden value='send' id='send' name='send' />
                 </div>
             </div>
             <div class="col-lg">
@@ -51,12 +50,4 @@
             </div>
         </div>
     </form>
-    <div class="row my-4">
-        <div class="col text-right">
-            <a class="btn btn-success" href='/down' download><img src='static/img/icons/DOWN.png'></a>
-        </div>
-        <div class="col text-left">
-            <a class="btn btn-info" href='/viewer'>Ansehen</a>
-        </div>
-    </div>
 {% endblock %}
