@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+
 from flask import Flask, render_template, request, redirect, make_response
 # from db_manager import init_db, add_to_db, get_db_tables, get_db_data
 from datetime import datetime, date

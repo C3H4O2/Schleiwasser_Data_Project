@@ -1,4 +1,26 @@
+function openOptions(evt, tabName) {
+
+  var i, tabcontent, tablinks;
+
+
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+
+  }
+
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+
+}
+
 $(function() {
+  document.getElementById("defaultopen").click();
   var lookup = {
     Temperatur: {'GB1': {'x': ['2020-08-25', '2020-09-01', '2020-09-08', '2020-10-07'], 'y': [10, 10, 0, 10]}, 'GB2': {'x': ['2020-08-25', '2020-09-01', '2020-09-08', '2020-09-15', '2020-09-22', '2020-10-07', '2020-10-20'], 'y': [10, 10, 10, 10, 10, 0.5, 10]}, 'GB3': {'x': ['2020-08-25', '2020-09-01', '2020-09-08', '2020-09-15', '2020-10-07', '2020-10-16', '2020-10-20'], 'y': [10, 10, 10, 10, 10, 10, 10]}, 'GB4': {'x': ['2020-08-25', '2020-09-01', '2020-09-08', '2020-09-15', '2020-09-22', '2020-10-07'], 'y': [10, 10, 10, 10, '<10', 10]}, 'GB5': {'x': ['2020-08-25', '2020-09-22', '2020-10-07', '2020-10-20', '2020-09-29'], 'y': [10, 10, 10, 10, 10]}},
     // nitratAQ: {
@@ -100,7 +122,7 @@ $(function() {
     });
   }
 
-  var layout = {
+  var graph_layout = {
     // xaxis: {
     //   range: ['2020-10-01', '2020-12-09']
     // },
@@ -127,9 +149,38 @@ $(function() {
     }]
   };
 
+
+	var overview_values = [
+	    ['Salaries', 'Office', 'Merchandise', 'Legal', '<b>TOTAL</b>'],
+      [1200000, 20000, 80000, 2000, 12120000],
+      [1300000, 20000, 70000, 2000, 130902000],
+      [1300000, 20000, 120000, 2000, 131222000],
+      [1300000, 20000, 320000, 2000, 134796600],
+      [1400000, 20000, 90000, 2000, 14102000]]
+
+	
+	var overview_data = [{
+  	type: 'table',
+  	header: {
+    	values: [["Date"], ["GB1"],["GB2"], ["GB3"], ["GB4"], ["GB5"]],
+    	align: "center",
+    	line: {width: 1, color: 'black'},
+    	fill: {color: "grey"},
+    	font: {family: "Arial", size: 12, color: "white"}
+  	},
+  	cells: {
+    	values: overview_values,
+    	align: "center",
+    	line: {color: "black", width: 1},
+    	font: {family: "Arial", size: 11, color: ["black"]}
+  	}
+	}]
+
+
   Plotly.newPlot('graph', {
     data: traces,
-    layout: layout,
+    layout: graph_layout,
     frames: frames
   });
+	Plotly.newPlot('overview', overview_data);
 });
