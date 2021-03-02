@@ -5,7 +5,7 @@
     <form action='/data' method='GET' id="dataform">
         <div class="row">
             <div class="col-lg">
-                {{- util.form_input_text(name="date", label="Datum", defaultvalue=date, addon=".2020") -}}
+                {{- util.form_input_text(name="date", label="Datum", placeholder="DD.MM.YYYY") -}}
                 {%- for name, label, addon in (
                         ("name", "Eintragender", ""),
                         ("uz", "Uhrzeit", "Uhr"),

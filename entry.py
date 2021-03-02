@@ -10,7 +10,7 @@ class OverwritingDetected(Exception):
 class Entry():
     def __init__(self):
         self.locations = ['GB1', 'GB2', 'GB3', 'GB4', 'GB5']
-        
+
     def setup_db(self):
         self.locations = ['GB1', 'GB2', 'GB3', 'GB4', 'GB5']
         with sqlite3.connect('data.db') as conn:
@@ -21,8 +21,9 @@ class Entry():
     def get(self, request):
         # global d
         name = request.args.get('name')
-        da = request.args.get('date').replace(',', '.')+'.2020'
-        da = '0'+da if len(da)<10 else da
+        da = request.args.get('date').replace(',', '.')
+        da = '.'.join([i if len(i)>1 else "0"+i for i in da.split('.')[:-1]])+"."+da.split('.')[2]
+        print(da)
         uz = request.args.get('uz').replace(',','.')
         uz = uz if not uz == '' else None
         ort = request.args.get('G').replace(',', '.')
